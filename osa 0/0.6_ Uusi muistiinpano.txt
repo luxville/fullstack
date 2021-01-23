@@ -1,0 +1,34 @@
+title 0.6: Uusi muistiinpano
+
+note over selain:
+json-koodin mukaisesti tapahtumankäsittelijä hoitaa
+lomakkeen, kun sen lähettämistä yritetään
+
+tapahtumankäsittelijä estää oletusarvoisen
+toiminnan, luo muistiinpanon, lisää sen selaimella
+samalle listalle aiempien muistiinpanojen kanssa, 
+päivittää sivulle uuden listan muistiinpanoista
+ja lähettää uuden muistiinpanon palvelimelle
+end note
+
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over palvelin:
+palvelin saa uuden muistiinpanon
+JSON-muotoisena datana ja 
+tallentaa sen
+end note
+
+palvelin-->selain: Statuskoodi 201 ilmoittaa, että uusi muistiinpano on luotu
+
+note over selain:
+selain suorittaa aiemmin ladattua js-koodia
+eikä muita HTTP-pyyntöjä suoriteta, vaan
+selain pysyy samalla sivulla
+end note
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän,
+joka renderöi tallennetut 
+muistiinpanot näytölle
+end note

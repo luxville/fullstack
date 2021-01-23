@@ -1,0 +1,32 @@
+title 0.4: uusi muistiinpano
+
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over palvelin:
+palvelin saa uuden muistiinpanon POST-pyynnön
+runkona ja luo siitä uutta muistiinpanoa
+vastaavan olion ja tallentaa sen aiempien 
+muistiinpanojen yhteyteen
+end note
+
+palvelin-->selain: Uudelleenohjauspyyntö osoitteeseen /exampleapp/notes
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+palvelin-->selain: main.js
+
+note over selain:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [{ content: "Hmm...??", date: "2021-01-23T13:07:30.280Z"}, ...]
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän,
+joka renderöi tallennetut 
+muistiinpanot näytölle
+end note
