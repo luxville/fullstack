@@ -37,13 +37,15 @@ const App = () => {
 
     if(names.includes(newName)) {
       const person = persons.find(person => person.name === newName)
+      const id = person.id
       if (window.confirm(`${newName} is already added to phonebook, replace the old number (${person.number}) with a new one (${newNumber})?`)) {
         personsService
-        .update(person.id, personObject)
+        .update(id, personObject)
           .then(updatedPerson => {
-            setPersons(persons.map(person => person.name !== newName ? person : updatedPerson))
+            setPersons(persons.map(person => person.id !== id ? person : updatedPerson))
           })
           .catch(error => {
+            console.log(person)
             setErrorStyle('delete')
             setErrorMessage(`Information of ${person.name} has already been removed from server`)
             setPersons(persons.filter(n => n.id !== person.id))
