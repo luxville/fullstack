@@ -1,5 +1,4 @@
 const _ = require('lodash')
-const logger = require('./logger')
 
 const dummy = (blogs) => {
   return 1
@@ -51,9 +50,13 @@ const mostLikes = (blogs) => {
     return 'no blogs on the list'
   }
 
-  const likesByAuthor = _(blogs).groupBy('author').map((l, a) => ({
-    author: a, likes: _.sumBy(l, 'likes')
-  })).value()
+  const likesByAuthor = _(blogs)
+    .groupBy('author')
+    .map((l, a) => ({
+      author: a,
+      likes: _.sumBy(l, 'likes')
+    }))
+    .value()
 
   let maximum = likesByAuthor.reduce((previous, current) =>
     previous.likes > current.likes
