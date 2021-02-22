@@ -1,6 +1,9 @@
 const _ = require('lodash')
 
 const dummy = (blogs) => {
+  if (blogs) {
+    return 1
+  }
   return 1
 }
 
@@ -17,11 +20,11 @@ const favoriteBlog = (blogs) => {
   if (blogs === null || blogs.length === 0) {
     return null
   }
-  return blogs.reduce((previous, current) => 
-    previous.likes > current.likes 
+  return blogs.reduce((previous, current) =>
+    previous.likes > current.likes
       ? previous
       : current
-      , 0
+  , 0
   )
 }
 
@@ -36,7 +39,7 @@ const mostBlogs = (blogs) => {
     return blogsByAuthor[author].length
   }))
 
-  let mostBlogsAuthor = Object.keys(blogsByAuthor).find(author => 
+  let mostBlogsAuthor = Object.keys(blogsByAuthor).find(author =>
     blogsByAuthor[author].length === maximum)
 
   return {
@@ -62,7 +65,7 @@ const mostLikes = (blogs) => {
     previous.likes > current.likes
       ? previous
       : current
-      , 0
+  , 0
   )
 
   return maximum

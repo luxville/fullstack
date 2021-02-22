@@ -61,12 +61,12 @@ describe('most likes', () => {
 
   test('when list has only one blog returns likes of that', () => {
     const result = mostLikes(listWithOneBlog)
-    expect(result).toEqual({ author: "Robert C. Martin", likes: 10 })
+    expect(result).toEqual({ author: 'Robert C. Martin', likes: 10 })
   })
 
   test('when list has many blogs returns the most liked author', () => {
     const result = mostLikes(listWithManyBlogs)
-    expect(result).toEqual({ author: "Edsger W. Dijkstra", likes: 17 })
+    expect(result).toEqual({ author: 'Edsger W. Dijkstra', likes: 17 })
   })
 })
 
@@ -80,12 +80,12 @@ describe('most blogs', () => {
 
   test('when list has only one blog returns that', () => {
     const result = mostBlogs(listWithOneBlog)
-    expect(result).toEqual({ author: "Robert C. Martin", blogs: 1 })
+    expect(result).toEqual({ author: 'Robert C. Martin', blogs: 1 })
   })
 
   test('when list has many blogs returns the author of most of them', () => {
     const result = mostBlogs(listWithManyBlogs)
-    expect(result).toEqual({ author: "Robert C. Martin", blogs: 3 })
+    expect(result).toEqual({ author: 'Robert C. Martin', blogs: 3 })
   })
 })
 

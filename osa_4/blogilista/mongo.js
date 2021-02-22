@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { response } = require('./app')
 const logger = require('./utils/logger')
 
 if (process.argv.length < 3) {
@@ -46,7 +45,7 @@ if (process.argv.length === 7) {
     likes: process.argv[6]
   })
   blog.save()
-    .then(response => {
+    .then(() => {
       logger.info('blog saved')
       mongoose.connection.close()
     })

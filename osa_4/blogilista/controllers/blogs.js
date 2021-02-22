@@ -1,9 +1,8 @@
-const jwt = require('jsonwebtoken')
 const blogsRouter = require('express').Router()
 const logger = require('../utils/logger')
 const Blog = require('../models/blog')
-const User = require('../models/user')
-const { request } = require('../app')
+//const User = require('../models/user')
+//const { request } = require('../app')
 const { userExtractor } = require('../utils/middleware')
 
 /*const getTokenFrom = request => {
@@ -51,13 +50,11 @@ blogsRouter.post('/', userExtractor, async (request, response) => {
 blogsRouter.delete('/:id', userExtractor, async (request, response) => {
   const token = request.token
   const user = request.user
-  //const decodedToken = jwt.verify(token, process.env.SECRET)
 
   if (!token) {
     return response.status(401).json({ error: 'invalid or missing token' })
   }
 
-  //const user = await User.findById(decodedToken.id)
   const blog = await Blog.findById(request.params.id)
   if (blog.user.toString() === user.id.toString()) {
     await Blog.findByIdAndDelete(request.params.id)
@@ -85,7 +82,7 @@ blogsRouter.put('/:id', async (request, response) => {
     url: body.url,
     likes: body.likes
   }
-logger.info('blog: ', blog.title, blog.likes)
+  logger.info('blog: ', blog.title, blog.likes)
   const updatedBlog = await Blog.findByIdAndUpdate(
     request.params.id, blog, { new: true })
   response.status(200).json(updatedBlog.toJSON())
