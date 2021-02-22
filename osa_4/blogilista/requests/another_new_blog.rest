@@ -5,5 +5,6 @@ Content-Type: application/json
     "title": "xkcd",
     "author": "Randall Munroe",
     "url": "https://what-if.xkcd.com/",
-    "likes": 13
+    "likes": 13,
+    "userId": "60303d033983fa69c7e9aa4b"
 }

@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/60301eba352e1e3f159b2581
+Content-Type: application/json
+
+{
+  "title": "xkcd",
+  "author": "Randall Munroe",
+  "url": "https://what-if.xkcd.com/",
+  "likes": 170
+}

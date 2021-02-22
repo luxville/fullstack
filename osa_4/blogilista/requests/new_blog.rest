@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlbWUiLCJpZCI6IjYwMzNjNjdkNDFhNmFhNmE0MDY3M2FkYSIsImlhdCI6MTYxNDAwNTkyM30.8KKQJhWaIviBPr8e-acemUGkwM2Tkzya7AQIv76_XSw
 
 {
-    "title": "Boing Boing",
-    "author": "various",
-    "url": "boingboing.net",
-    "likes": 42
+    "title": "Sata Salamaa",
+    "author": "Right Wing",
+    "url": "8flash.net",
+    "likes": 13
 }
