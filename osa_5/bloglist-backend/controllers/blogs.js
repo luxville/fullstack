@@ -53,7 +53,7 @@ router.delete('/:id', async (request, response) => {
 })
 
 
-router.put('/:id', async (request, response, next) => {
+router.put('/:id', async (request, response) => { // , next
   const blog = request.body
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
 

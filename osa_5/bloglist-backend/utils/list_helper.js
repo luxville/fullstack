@@ -1,6 +1,9 @@
 const _ = require('lodash')
 
 const dummy = (blogs) => {
+  if (blogs) {
+    return 1
+  }
   return 1
 }
 
@@ -32,7 +35,7 @@ const mostBlogs = (blogs) => {
   const byAuthor = _.groupBy(blogs, (b) => b.author)
   const authors = Object.keys(byAuthor)
   let withMost = authors[0]
-  
+
   authors.forEach(author => {
     if (byAuthor[author].length > byAuthor[withMost].length) {
       withMost = author
@@ -47,19 +50,19 @@ const mostLikes = (blogs) => {
 
   if ( blogs.length === 0) {
     return null
-  } 
+  }
 
   const byAuthor = _.groupBy(blogs, (b) => b.author)
   const authors = Object.keys(byAuthor)
   let withMost = authors[0]
-  
+
   authors.forEach(author => {
     if (likes(byAuthor[author]) > likes(byAuthor[withMost])) {
       withMost = author
     }
   })
 
-  return withMost  
+  return withMost
 }
 
 module.exports = {
