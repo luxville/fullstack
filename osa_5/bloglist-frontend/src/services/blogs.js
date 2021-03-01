@@ -21,8 +21,32 @@ const create = async newObject => {
   return response.data
 }
 
-const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject)
+const update = async (blog) => {//id, newObject
+  //const request = axios.put(`${baseUrl}/${id}`, newObject)
+  //return request.then(response => response.data)
+  const config = {
+    headers: { Authorization: token }//`Bearer ${token}` }
+  }
+  console.log('yksi')
+  const blogToUpdate = {
+    user: blog.user.id,
+    likes: blog.likes + 1,
+    author: blog.author,
+    title: blog.title,
+    url: blog.url
+  }
+
+  const response = await axios.put(`${baseUrl}/${blog.id}`, blogToUpdate, config)
+  console.log('toinen yksi')
+  return response.data
+}
+
+const remove = (id) => {
+  const config = {
+    headers: { Authorization: token }
+  }
+
+  const request = axios.delete(`${baseUrl}/${id}`, config)
   return request.then(response => response.data)
 }
 
@@ -32,4 +56,4 @@ const updated = update
 const sToken = setToken
 
 export default { blogs, created, updated, sToken }*/
-export default { getAll, create, update, setToken }
+export default { setToken, getAll, create, update, remove }
