@@ -1,0 +1,11 @@
+PUT http://localhost:3003/api/blogs/603cafcb5091c84ce85aa92c
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlbWUiLCJpZCI6IjYwMzNjNjdkNDFhNmFhNmE0MDY3M2FkYSIsImlhdCI6MTYxNDYxMjIzMH0.8G0HunGD3Oj4yBPfzJqlXmHGOv3Po85mDLO070mL6Ts
+
+{
+    "user": "6033c67d41a6aa6a40673ada",
+    "likes": 1,
+    "author": "Some One",
+    "title": "ABC, perusohjelmointia",
+    "url": "abc.someurl.net"
+}

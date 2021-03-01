@@ -10,17 +10,17 @@ router.get('/', async (request, response) => {
 })
 
 router.post('/', async (request, response) => {
-  const blog = new Blog(request.body)
-  if ( !blog.likes ) {
-    blog.likes = 0
-  }
-
   if (!request.user) {
     return response.status(401).json({ error: 'token missing or invalid' })
   }
   const user = request.user
 
-  if ( !blog.title || !blog.url ) {
+  const blog = new Blog(request.body)
+  if (!blog.likes) {
+    blog.likes = 0
+  }
+
+  if (!blog.title || !blog.url) {
     return response.status(400).send({ error: 'title and url are required' })
   }
 
@@ -41,8 +41,8 @@ router.delete('/:id', async (request, response) => {
 
   const blog = await Blog.findById(request.params.id)
 
-  if ( user.id.toString() !== blog.user.toString() ) {
-    return response.status(401).send({ error: 'you can only delete your own blogs' })
+  if (user.id.toString() !== blog.user.toString()) {
+    return response.status(401).send({ error: 'you can only delete blogs added by yourself' })
   }
 
   await blog.delete()
@@ -53,11 +53,21 @@ router.delete('/:id', async (request, response) => {
 })
 
 
-router.put('/:id', async (request, response) => { // , next
-  const blog = request.body
-  const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+router.put('/:id', async (request, response) => {
+  const body = request.body
+  console.log('body:', body)
 
-  response.json(updatedBlog.toJSON())
+  const blog = {
+    user: body.user.id,
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes
+  }
+
+  const updatedBlog = await Blog.findByIdAndUpdate(
+    request.params.id, blog, { new: true })
+  response.status(200).json(updatedBlog.toJSON())
 })
 
 module.exports = router
