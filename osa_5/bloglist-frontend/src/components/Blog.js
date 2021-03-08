@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 
 const Blog = ({ blog, handleLike, handleRemove }) => {
   const [showAll, setShowAll] = useState(false)
-  //const [isOwner, setIsOwner] = useState(user === blog.user.id)
+  const hideWhenVisible = { display: showAll ? 'none' : '' }
+  const showWhenVisible = { display: showAll ? '' : 'none' }
 
   const blogStyle = {
     paddingTop: 10,
@@ -20,31 +21,25 @@ const Blog = ({ blog, handleLike, handleRemove }) => {
   const currentUserJSON = JSON.parse(currentUser)
 
   const ViewRemoveButton = () => {
-    if (currentUserJSON.username !== blog.user.username) {
+    if (currentUserJSON === null) {
       return null
     }
-
-    return (
+    if (currentUserJSON.username === blog.user.username) {
       <button onClick={handleRemove} style={buttonStyle}>remove</button>
-    )
-  }
+    }
 
-  if (!showAll) {
-    return (
-      <div style={blogStyle}>
-        <div>
-          { blog.title } { blog.author } <button onClick={() => setShowAll(true)}>view</button>
-        </div>
-      </div>
-    )
+    return null
   }
 
   return (
     <div style={blogStyle}>
-      <div>
+      <div style={hideWhenVisible}>
+        { blog.title } { blog.author } <button onClick={() => setShowAll(true)}>view</button>
+      </div>
+      <div style={showWhenVisible}>
         <p>{ blog.title } { blog.author } <button onClick={ () => setShowAll(false) }>hide</button></p>
         <p>{ blog.url }</p>
-        <p>likes { blog.likes } <button onClick={handleLike}>like</button></p>
+        <p>likes { blog.likes } <button onClick={handleLike} className="likeButton">like</button></p>
         <p>{ blog.user.name }</p>
         <ViewRemoveButton />
       </div>
